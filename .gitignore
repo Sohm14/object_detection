@@ -1,0 +1,24 @@
+# Environment & Python
+.env
+/venv/
+__pycache__/
+
+# Project Directories
+/best_models/
+/dataset_resized/
+/dataset_resized1_copy/
+/datasets/
+/detected_images/
+/image/
+/models/
+/original_data_set/
+/results/
+/runs/
+/vit/
+/yolov5/
+/rcnn/
+
+# Specific Exclusions
+/POLAR-Sim/
+!/rcnn/confusion_matrix.ipynb
+!/rcnn/rcnn/sol.ipynb
