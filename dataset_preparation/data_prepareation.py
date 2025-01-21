@@ -3,9 +3,9 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 # Paths to your dataset
-image_root = r"C:\Users\Samarth\Desktop\polar3D\original_data_set"
-label_root = r"C:\Users\Samarth\Desktop\polar3D\POLAR-Sim\Labels"
-output_dir = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset"
+image_root = "original_data_set"
+label_root = "POLAR-Sim\Labels"
+output_dir = "yolo5_train\dataset_yolo"
 
 # Output structure
 output_images_train = os.path.join(output_dir, "images/train")

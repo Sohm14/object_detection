@@ -6,13 +6,13 @@ import os
 
 
 # Define the source directories
-source_dir = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset\images"
+source_dir = "yolo5_train\dataset_yolo\images"
 train_dir = os.path.join(source_dir, "train")
 test_dir = os.path.join(source_dir, "test")
 val_dir = os.path.join(source_dir, "val")
 
 # Define the destination directory
-destination_dir = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset\images"
+destination_dir = "yolo5_train\dataset_yolo\images"
 destination_train_dir = os.path.join(destination_dir, "train")
 destination_test_dir = os.path.join(destination_dir, "test")
 destination_val_dir = os.path.join(destination_dir, "val")

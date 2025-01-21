@@ -6,7 +6,7 @@ from albumentations.core.composition import OneOf
 import numpy as np
 
 # Paths for images and labels
-base_path = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset"
+base_path = "yolo5_train\dataset_yolo"
 images_path = os.path.join(base_path, "images/train")
 labels_path = os.path.join(base_path, "labels/train")
 

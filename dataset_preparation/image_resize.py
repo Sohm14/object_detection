@@ -118,9 +118,9 @@ def resize_and_save_images_labels(
 
 
 if __name__ == "__main__":
-    input_images_folder = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset\images"
-    input_labels_folder = r"C:\Users\Samarth\Desktop\polar3D\datasets\dataset\labels"
-    output_folder = r"C:\Users\Samarth\Desktop\polar3D\dataset_resized1"
+    input_images_folder = "yolo5_train\dataset_yolo\images"
+    input_labels_folder = "yolo5_train\dataset_yolo\labels"
+    output_folder = r"yolo5_train\dataset_yolo"
     resize_and_save_images_labels(
         input_images_folder, input_labels_folder, output_folder
     )
