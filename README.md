@@ -103,4 +103,3 @@ pip install -r requirements.txt
 ## Acknowledgements
 
 - [POLAR-Sim Dataset](https://github.com/uwsbel/POLAR-Sim)
-- [NASA&#39;s PolarDB Dataset](https://ti.arc.nasa.gov/dataset/IRG_PolarDB/PolarDB_download/)
