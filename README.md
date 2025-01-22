@@ -79,7 +79,7 @@ This project focuses on detecting rocks and shadows from lunar terrain images us
 3. **Evaluate the Model**:
 
    - Use the confusion matrix to evaluate the model performance .
-   - python confusion_matrix.py
+   - using confusion_matrix.ipynb
 
 ## Results
 

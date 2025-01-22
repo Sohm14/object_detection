@@ -1,9 +1,5 @@
 import subprocess
 import sys
-import os
-
-output_dir = "yolo5_train\models"
-os.makedirs(output_dir, exist_ok=True)
 
 
 def train_yolov5n():
@@ -11,7 +7,7 @@ def train_yolov5n():
         # Define the command to run the YOLOv5 training script
         command = [
             sys.executable,  # Use the current Python executable
-            "yolov5\train.py",  # Path to YOLOv5 train.py
+            r"C:\Users\Samarth\Desktop\polar3D\yolov5\train.py",  # Path to YOLOv5 train.py
             "--img",
             "640",  # Image size
             "--batch",
@@ -19,13 +15,13 @@ def train_yolov5n():
             "--epochs",
             "45",  # Number of epochs
             "--data",
-            "yolo5_train\custom_dataset.yaml",  # Path to dataset config
+            r"C:\Users\Samarth\Desktop\polar3D\yolo5_train\custom_dataset.yaml",  # Path to dataset config
             "--weights",
-            "yolov5\yolov5n.pt",  # Path to YOLOv5 Nano pre-trained weights
+            r"C:\Users\Samarth\Desktop\polar3D\yolov5\yolov5n.pt",  # Path to YOLOv5 Nano pre-trained weights
             "--device",
             "0",  # Device to use (e.g., GPU 0, or "cpu" for CPU)
             "--project",
-            "yolov5\models",  # Path to save models
+            r"C:\Users\Samarth\Desktop\polar3D\yolov5\model",  # Path to save models
         ]
 
         # print("Starting YOLOv5 Nano training...")

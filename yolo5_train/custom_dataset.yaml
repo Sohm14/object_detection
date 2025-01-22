@@ -1,6 +1,6 @@
-train: yolo5_train\dataset_yolo\images\train
-val: yolo5_train\dataset_yolo\images\val
-test: yolo5_train\dataset_yolo\images\test
+train: C:\Users\Samarth\Desktop\polar3D\dataset_resized1_copy\images\train
+val: C:\Users\Samarth\Desktop\polar3D\dataset_resized1_copy\images\val
+test: C:\Users\Samarth\Desktop\polar3D\dataset_resized1_copy\images\test
 
 nc: 2
 names: ["rock", "shadow"]
