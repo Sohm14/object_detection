@@ -68,7 +68,10 @@ def convert_yolo_to_faster_rcnn(data_dir, output_dir):
 
 
 # Example usage
+output_dir = r"rcnn_train\dataset_rcnn"
+os.makedirs(output_dir, exist_ok=True)
+
 convert_yolo_to_faster_rcnn(
     data_dir=r"yolo_train\dataset_yolo",
-    output_dir=r"rcnn_train\dataset_rcnn",
+    output_dir=output_dir,
 )

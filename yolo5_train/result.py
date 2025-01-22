@@ -85,19 +85,23 @@ import os
 model = torch.hub.load(
     "ultralytics/yolov5",
     "custom",
-    path=r"C:\Users\Samarth\Desktop\polar3D\models\exp5\exp\weights\best.pt",
+    path=r"yolo5_train\models\exp5\exp\weights\best.pt",
 )
 
 
 def process_image(image_path):
     try:
         exposure = image_path.split("_")[-1].split(".")[0]
+        Sun_azimuth = file.split("_")[3].split(".")[0]
         print(exposure)
     except IndexError:
         print(f"Error: {image_path}")
 
     try:
-        if exposure in ["0016", "0032", "0064", "0128"]:
+        if exposure in ["0016", "0032", "0064", "0128"] or (
+            Sun_azimuth == "270"
+            and exposure in ["0016", "0032", "0064", "0128", "0256"]
+        ):
             # Process with PIL
             try:
                 with Image.open(image_path) as img:
@@ -105,6 +109,17 @@ def process_image(image_path):
                         img = img.convert("RGB")
                     img_array = np.array(img)
                     return img_array
+
+                if Sun_azimuth == "270":
+                    image = cv2.imread(image_path)
+                    if image is None:
+                        raise ValueError("Failed to read image with OpenCV.")
+
+                    # Convert to grayscale and equalize histogram
+                    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+                    clahe_image = clahe.apply(gray)
+                    return clahe_image
             except Exception as e:
                 raise ValueError(f"Error processing image with PIL: {e}")
 
@@ -117,7 +132,8 @@ def process_image(image_path):
             # Convert to grayscale and equalize histogram
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             equalized = cv2.equalizeHist(gray)
-            return equalized
+            rgb_image = cv2.cvtColor(equalized, cv2.COLOR_GRAY2RGB)
+            return rgb_image
 
     except Exception as e:
         print(f"Error processing {image_path}: {e}")
@@ -155,8 +171,8 @@ def process_random_images(img_dir, num_images):
 
 
 # Load the image
-img_dir = r"C:\Users\Samarth\Desktop\polar3D\dataset_resized1_copy\images\test"
-result_dir = r"C:\Users\Samarth\Desktop\polar3D\results\yolo5_nano\images"
+img_dir = "yolo5_train\dataset_yolo\images\test"
+result_dir = r"yolo5_train\predictions\\images"
 os.makedirs(result_dir, exist_ok=True)
 # image_path = r"C:\Users\Samarth\Desktop\polar3D\dataset_resized1_copy\images\test\04_B_off_180_R_0128.png"
 # image = process_image(image_path)

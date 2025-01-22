@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 image_root = "original_data_set"
 label_root = "POLAR-Sim\Labels"
 output_dir = "yolo5_train\dataset_yolo"
+os.makedirs(output_dir, exist_ok=True)
+
 
 # Output structure
 output_images_train = os.path.join(output_dir, "images/train")

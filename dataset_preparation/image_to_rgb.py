@@ -33,6 +33,7 @@ def process_and_save_images(src_dir, dest_dir):
 
             try:
                 exposure = file.split("_")[5].split(".")[0]
+                Sun_azimuth = file.split("_")[3].split(".")[0]
             except IndexError:
                 print(f"Skipping file with unexpected format: {file}")
                 continue
@@ -41,19 +42,24 @@ def process_and_save_images(src_dir, dest_dir):
             file_extension = file.split(".")[-1].upper()
 
             try:
-                if exposure in ["0016", "0032", "0064", "0128"]:
+                if exposure in ["0016", "0032", "0064", "0128"] or (
+                    Sun_azimuth == "270"
+                    and exposure in ["0016", "0032", "0064", "0128", "0256"]
+                ):
                     # Process with PIL
                     with Image.open(src_path) as img:
                         if img.mode != "RGB":
                             img = img.convert("RGB")
                         # Save in the same format
-                        # img.save(dest_path, format=file_extension)
-                        # image = cv2.imread(dest_path)
-                        # if image is None:
-                        #     raise ValueError("Failed to read image with OpenCV.")
+                        img.save(dest_path, format=file_extension)
+
+                    if Sun_azimuth == "270":
+                        image = cv2.imread(dest_path)
+                        if image is None:
+                            raise ValueError("Failed to read image with OpenCV.")
 
                         # Convert to grayscale and equalize histogram
-                        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
                         clahe_image = clahe.apply(gray)
 
@@ -77,12 +83,8 @@ def process_and_save_images(src_dir, dest_dir):
                     # Save with OpenCV in the same format
                     if file_extension == "JPG":
                         file_extension = "JPEG"  # OpenCV uses 'JPEG' instead of 'JPG'
-                    cv2.imwrite(dest_path, equalized)
-                    with Image.open(dest_path) as img:
-                        if img.mode != "RGB":
-                            img = img.convert("RGB")
-                        # Save in the same format
-                        img.save(dest_path, format=file_extension)
+                    rgb_image = cv2.cvtColor(equalized, cv2.COLOR_GRAY2RGB)
+                    cv2.imwrite(dest_path, rgb_image)
             except Exception as e:
                 print(f"Error processing {src_path}: {e}")
 

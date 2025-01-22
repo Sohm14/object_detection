@@ -1,5 +1,9 @@
 import subprocess
 import sys
+import os
+
+output_dir = "yolo5_train\models"
+os.makedirs(output_dir, exist_ok=True)
 
 
 def train_yolov5n():
@@ -21,7 +25,7 @@ def train_yolov5n():
             "--device",
             "0",  # Device to use (e.g., GPU 0, or "cpu" for CPU)
             "--project",
-            "yolov5\models\exp5",  # Path to save models
+            "yolov5\models",  # Path to save models
         ]
 
         # print("Starting YOLOv5 Nano training...")
