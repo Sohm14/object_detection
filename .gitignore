@@ -17,7 +17,6 @@ __pycache__/
 /vit/
 /yolov5/
 /rcnn/
-/visualizations/
 
 # Specific Exclusions
 /POLAR-Sim/
